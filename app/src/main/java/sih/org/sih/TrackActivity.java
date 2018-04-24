@@ -39,11 +39,17 @@ public class TrackActivity extends AppCompatActivity {
     Spinner spinner;
     CircleImageView profile_image;
     TextView profile_name;
+    int numBags;
+    TextView srcLocation,destLocation,num_bags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track);
+
+        srcLocation = findViewById(R.id.srcLocation);
+        destLocation = findViewById(R.id.destLocation);
+        num_bags = findViewById(R.id.bag_count);
 
         profile_image = findViewById(R.id.profile_image) ;
         profile_name = findViewById(R.id.profile_name);
@@ -105,7 +111,11 @@ public class TrackActivity extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int numBags = dataSnapshot.child("numberOfBags").getValue(Integer.class);
+                numBags = dataSnapshot.child("numberOfBags").getValue(Integer.class);
+                num_bags.setText(String.valueOf(numBags));
+                srcLocation .setText(dataSnapshot.child("src").getValue(String.class));
+                destLocation.setText(dataSnapshot.child("dest").getValue(String.class));
+
                 arrayAdapter.clear();
                 for(int m = 0 ;m <numBags ; m++) {
                     arrayAdapter.add("Bag "+(m+1));
