@@ -1,4 +1,5 @@
 package sih.org.sih;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +24,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import sih.org.sih.Adapters.ProgressAdapter;
 import sih.org.sih.Modals.Stage;
 
@@ -34,15 +37,27 @@ public class TrackActivity extends AppCompatActivity {
     ProgressAdapter adapter;
     DatabaseReference ref;
     Spinner spinner;
+    CircleImageView profile_image;
+    TextView profile_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track);
 
+        profile_image = findViewById(R.id.profile_image) ;
+        profile_name = findViewById(R.id.profile_name);
+
         textError = findViewById(R.id.textError);
 
         String email = getIntent().getStringExtra("email");
         Log.d("EMAIL",email);
+
+        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        Uri imageUri = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
+
+        Glide.with(this).load(imageUri).into(profile_image);
+        profile_name.setText(name);
 
         spinner = findViewById(R.id.spinner);
 
