@@ -17,28 +17,38 @@
 
         <ImageView
             android:id="@+id/google_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="@dimen/g_top_margin"
             android:contentDescription="@string/desc_google_icon"
-            android:src="@drawable/googleg_color" />
+            android:src="@drawable/sih" />
 
         <TextView
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Sign In to App"
+            android:text="Welcome to\nBag Tracking System"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/title_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Sign In with Google\nTo continue"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:id="@+id/pBar"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title_text"
+            android:layout_below="@id/title_text1"
             android:visibility="gone"
             android:layout_centerInParent="true"
             android:layout_marginTop="16dp"/>
@@ -58,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="visible"
-            tools:visibility="gone" />
+             />
 
     </RelativeLayout>
 

@@ -1,5 +1,8 @@
 package sih.org.sih;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -40,12 +44,15 @@ public class TrackActivity extends AppCompatActivity {
     CircleImageView profile_image;
     TextView profile_name;
     int numBags;
+    ImageView logout_image;
     TextView srcLocation,destLocation,num_bags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track);
+
+        logout_image = findViewById(R.id.logout_image);
 
         srcLocation = findViewById(R.id.srcLocation);
         destLocation = findViewById(R.id.destLocation);
@@ -68,6 +75,28 @@ public class TrackActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
 
         ref = FirebaseDatabase.getInstance().getReference().child("EmailMap");
+
+        logout_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(TrackActivity.this)
+                        .setTitle("Logout")
+                        .setMessage("Are you sure you want to logout from this account?")
+                        .setIcon(R.drawable.googleg_color)
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(TrackActivity.this,MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("NO",null).show();
+            }
+        });
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
