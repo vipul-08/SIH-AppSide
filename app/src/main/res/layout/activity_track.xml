@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     tools:context=".TrackActivity"
     android:background="@color/graylight"
     android:orientation="vertical">
@@ -16,12 +17,6 @@
             android:layout_height="250dp"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:id="@+id/logout_image"
-                android:layout_gravity="end"
-                android:src="@drawable/ic_cancel_black_24dp"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_marginTop="5dp"
@@ -159,6 +154,41 @@
             android:layout_marginEnd="8dp">
         </android.support.v7.widget.RecyclerView>
 
-    </RelativeLayout>
+        <com.github.clans.fab.FloatingActionMenu
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/floating_menu"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            fab:menu_labels_ellipsize="end"
+            fab:menu_labels_singleLine="true"
+            app:menu_fab_label="Cancel"
+            app:menu_labels_colorNormal="@color/cardview_light_background"
+            fab:menu_backgroundColor="#ccffffff"
+            app:menu_labels_textColor="#000000"
+            app:menu_labels_colorPressed="#f0f0f0"
+            fab:menu_animationDelayPerItem="0"
+            fab:menu_colorNormal="#00c29f"
+            fab:menu_colorPressed="#00c29f"
+            fab:menu_colorRipple="#00c29f"
+            android:padding="8dp">
 
+            <com.github.clans.fab.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fabLogOut"
+                android:src="@drawable/ic_exit_to_app_black_24dp"
+                fab:fab_size="mini"
+                fab:fab_label="Sign Out" />
+            <com.github.clans.fab.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fabContact"
+                android:src="@drawable/ic_call_black_24dp"
+                fab:fab_size="mini"
+                fab:fab_label="Contact Baggage Services"/>
+        </com.github.clans.fab.FloatingActionMenu>
+    </RelativeLayout>
 </LinearLayout>

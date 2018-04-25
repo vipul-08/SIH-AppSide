@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -44,19 +45,21 @@ public class TrackActivity extends AppCompatActivity {
     CircleImageView profile_image;
     TextView profile_name;
     int numBags;
-    ImageView logout_image;
     TextView srcLocation,destLocation,num_bags;
+    FloatingActionButton fabContact;
+    FloatingActionButton fabLogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track);
 
-        logout_image = findViewById(R.id.logout_image);
-
         srcLocation = findViewById(R.id.srcLocation);
         destLocation = findViewById(R.id.destLocation);
         num_bags = findViewById(R.id.bag_count);
+
+        fabLogOut = findViewById(R.id.fabLogOut);
+        fabContact = findViewById(R.id.fabContact);
 
         profile_image = findViewById(R.id.profile_image) ;
         profile_name = findViewById(R.id.profile_name);
@@ -76,7 +79,20 @@ public class TrackActivity extends AppCompatActivity {
 
         ref = FirebaseDatabase.getInstance().getReference().child("EmailMap");
 
-        logout_image.setOnClickListener(new View.OnClickListener() {
+        fabContact.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:9619197014"));
+                startActivity(callIntent);
+
+            }
+
+        });
+
+        fabLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(TrackActivity.this)

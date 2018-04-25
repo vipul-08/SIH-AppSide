@@ -38,8 +38,8 @@ public class ProgressAdapter extends RecyclerView.Adapter<ProgressAdapter.Progre
     @Override
     public void onBindViewHolder(@NonNull ProgressViewHolder holder, int position) {
         Stage stage = list.get(position);
-	    TextDrawable greenDrawable = TextDrawable.builder().beginConfig().textColor(Color.BLACK).endConfig().buildRound(String.valueOf(position), Color.GREEN);
-	    TextDrawable redDrawable = TextDrawable.builder().buildRound(String.valueOf(position),Color.RED);
+	    TextDrawable greenDrawable = TextDrawable.builder().beginConfig().textColor(Color.WHITE).endConfig().buildRound(String.valueOf(position), Color.BLUE);
+	    TextDrawable redDrawable = TextDrawable.builder().beginConfig().textColor(Color.WHITE).endConfig().buildRound(String.valueOf(position),Color.GRAY);
         if(position==(list.size()-1))
         {
         	holder.sep.setVisibility(View.INVISIBLE);
